@@ -31,7 +31,7 @@ const Navbar = () => {
                         whileTap={{ scale: 0.9 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     >
-                        <Link to='#' className='text-[10px] md:text-sm border border-orange-400 px-2 max-h-min rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Login </Link>
+                        <Link to='#' className='text-[10px] md:text-sm border border-orange-400 px-2 py-1 max-h-min flex rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Login </Link>
                     </motion.div>
                     <p className="text-[10px] sm:text-sm mx-1 items-center flex md:mx-2">or</p>
                     <motion.div
@@ -39,7 +39,7 @@ const Navbar = () => {
                         whileTap={{ scale: 0.9 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     >
-                        <Link to='#' className='text-[10px] md:text-sm border px-2 max-h-min border-orange-400 rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Register </Link>
+                        <Link to='#' className='text-[10px] md:text-sm border px-2 max-h-min py-1 border-orange-400 flex rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Register </Link>
                     </motion.div>
                 </div>
                 <div className="h-full hover:cursor-pointer">
