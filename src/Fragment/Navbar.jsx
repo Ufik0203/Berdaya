@@ -12,11 +12,16 @@ const Navbar = () => {
             </div>
             <div className="mx-2 col-span-8 grid">
                 <div className="grid grid-cols-5 md:grid-cols-5 justify-center items-center text-xs gap-2 sm:text-sm md:text-base font-semibold">
-                    <NavbarMenu>HOME</NavbarMenu>
-                    <NavbarMenu>BEST SELLER</NavbarMenu>
-                    <NavbarMenu>TOP RATED</NavbarMenu>
+                    <NavbarMenu>BERANDA</NavbarMenu>
+                    <NavbarMenu>
+                        <span className="block md:hidden">LANG GANAN</span>
+                        <span className="hidden md:block">LANGGANAN</span>
+                    </NavbarMenu>
+                    <NavbarMenu>SUPER</NavbarMenu>
                     <NavbarMenu>DISKON</NavbarMenu>
-                    <NavbarMenu>PAGES</NavbarMenu>
+                    <div className="rounded-md hover:bg-slate-400">
+                        <NavbarMenu clsname='hover:text-black'>LOKER</NavbarMenu>
+                    </div>
                     {/* <NavbarMenu path='/about' clsname="hidden md:flex">ABOUT</NavbarMenu> */}
                 </div>
                 <div className=" flex justify-center items-center h-9 md:border-none border rounded-md px-1 py-1 bg-white md:bg-transparent">
