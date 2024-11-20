@@ -1,35 +1,62 @@
 import SeacrhBox from "../Components/SeacrhBox";
 import NavbarMenu from "../Components/NavbarMenu";
 import Categories from "../Components/Categories";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
     return (
-        <div className="border border-red-500 md:grid md:grid-cols-12 min-h-32 flex select-none">
+        <div className="border-b border-b-blue-400 md:grid md:grid-cols-12 min-h-32 flex select-none bg-blue-950 text-white">
             <div className="col-span-2 hidden md:flex">
 
             </div>
             <div className="mx-2 col-span-8 grid">
-                <div className="grid grid-cols-5 md:grid-cols-6 justify-center items-center text-xs gap-2 sm:text-sm md:text-base font-semibold">
+                <div className="grid grid-cols-5 md:grid-cols-5 justify-center items-center text-xs gap-2 sm:text-sm md:text-base font-semibold">
                     <NavbarMenu>HOME</NavbarMenu>
                     <NavbarMenu>BEST SELLER</NavbarMenu>
                     <NavbarMenu>TOP RATED</NavbarMenu>
                     <NavbarMenu>DISKON</NavbarMenu>
                     <NavbarMenu>PAGES</NavbarMenu>
-                    <NavbarMenu path='/about' clsname="hidden md:flex">ABOUT</NavbarMenu>
+                    {/* <NavbarMenu path='/about' clsname="hidden md:flex">ABOUT</NavbarMenu> */}
                 </div>
-                <div className=" flex justify-center items-center h-9 md:border-none border rounded-md px-1 py-1">
+                <div className=" flex justify-center items-center h-9 md:border-none border rounded-md px-1 py-1 bg-white md:bg-transparent">
                     <Categories></Categories>
                     <SeacrhBox></SeacrhBox>
                 </div>
             </div>
-            <div className="md:col-span-2 min-w-28 border grid justify-end md:justify-center">
-                <div className='border flex mt-2 font-semibold'>
-                    <NavbarMenu clsname='h-min'>Login </NavbarMenu>
-                    <p className="text-xs sm:text-sm mx-2">or</p>
-                    <NavbarMenu clsname='h-min'> Register</NavbarMenu>
+            <div className="md:col-span-2 min-w-28 md:grid justify-end md:justify-center mr-1">
+                <div className='md:flex mt-2 font-semibold justify-center md:items-center mx-1 flex'>
+                    <motion.div
+                        initial={{ opacity: 1, scale: 1 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    >
+                        <Link to='#' className='text-[10px] md:text-sm border border-orange-400 px-2 max-h-min rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Login </Link>
+                    </motion.div>
+                    <p className="text-[10px] sm:text-sm mx-1 items-center flex md:mx-2">or</p>
+                    <motion.div
+                        initial={{ opacity: 1, scale: 1 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    >
+                        <Link to='#' className='text-[10px] md:text-sm border px-2 max-h-min border-orange-400 rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Register </Link>
+                    </motion.div>
                 </div>
-                <div>
-                    // cart dll
+                <div className="h-full hover:cursor-pointer">
+                    <motion.div className="absolute right-3 md:right-10 border top-[80px] bg-red-500 px-2 py-2 rounded-lg"
+                        nitial={{ opacity: 1, scale: 1 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    >
+                        <img src="./images/icons/cart-1.png" alt="" className="w-5 h-5" />
+                    </motion.div>
+                    <motion.div className="absolute right-14 md:right-24 border top-[80px] bg-red-500 px-2 py-2 rounded-lg"
+                        nitial={{ opacity: 1, scale: 1 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    >
+                        <img src="./images/icons/heart-1.png" alt="" className="w-5 h-5" />
+                    </motion.div>
                 </div>
             </div>
         </div>

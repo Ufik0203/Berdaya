@@ -18,7 +18,7 @@ const AdditionalContentAbout = () => {
                     }
                 });
             },
-            { threshold: 0.1 }
+            { threshold: 1 }
         );
 
         elementsRef.current.forEach((el) => {

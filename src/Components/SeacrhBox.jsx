@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const SeacrhBox = () => {
     return (
-        <div className="flex items-center justify-center rounded-md hover:cursor-pointer md:border px-1 py-1 md:mt-5">
+        <div className="flex items-center justify-center rounded-md hover:cursor-pointer md:border px-1 py-1 md:mt-5 bg-white">
             <div>
                 <input type="text" className="px-2 w-[100%] sm:w-[15rem] md:w-[20rem] lg:w-[30rem] xl:w-[40rem] focus:outline-none" placeholder="Search..." />
             </div>

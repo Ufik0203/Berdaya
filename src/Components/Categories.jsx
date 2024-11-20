@@ -18,12 +18,12 @@ const Categories = () => {
         };
     }, []);
     return (
-        <div className="dropdown" ref={dropdownRef}>
+        <div className="dropdown bg-orange-500 rounded-md border-2 border-orange-500 md:hidden" ref={dropdownRef}>
             <motion.div
                 initial={{ opacity: 1, scale: 1 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                className="border border-red-500 hover:cursor-pointer rounded-sm justify-center items-center flex min-h-6 px-5 md:hidden select-none"
+                className="hover:cursor-pointer rounded-sm justify-center items-center flex min-h-6 px-3 md:hidden select-none"
                 onClick={isOpen}
                 tabIndex={0}
             >
@@ -32,7 +32,7 @@ const Categories = () => {
             <AnimatePresence>
                 {isDropdown && (
                     <motion.div
-                        className="dropdown-menu dropdown-menu-bottom-center w-40 border bg-white absolute ml-5"
+                        className="dropdown-menu dropdown-menu-bottom-center w-40 border bg-white absolute ml-8 text-black"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
