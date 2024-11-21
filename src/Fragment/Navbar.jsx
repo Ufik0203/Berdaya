@@ -5,13 +5,18 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
+    const handleClick = () => {
+        alert("This site is under development");
+    }
     return (
         <div className="border-b border-b-blue-400 md:grid md:grid-cols-12 min-h-32 flex select-none bg-blue-950 text-white">
             <div className="col-span-2 hidden md:flex">
 
             </div>
             <div className="mx-2 col-span-8 grid">
-                <div className="grid grid-cols-5 md:grid-cols-5 justify-center items-center text-xs gap-2 sm:text-sm md:text-base font-semibold">
+                <div className="grid grid-cols-5 md:grid-cols-5 justify-center items-center text-xs gap-2 sm:text-sm md:text-base font-semibold"
+                    onClick={handleClick}
+                >
                     <NavbarMenu>BERANDA</NavbarMenu>
                     <NavbarMenu>
                         <span className="block md:hidden">LANG GANAN</span>
@@ -35,6 +40,7 @@ const Navbar = () => {
                         initial={{ opacity: 1, scale: 1 }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={handleClick}
                     >
                         <Link to='#' className='text-[10px] md:text-sm border border-orange-400 px-2 py-1 max-h-min flex rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Login </Link>
                     </motion.div>
@@ -43,6 +49,7 @@ const Navbar = () => {
                         initial={{ opacity: 1, scale: 1 }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={handleClick}
                     >
                         <Link to='#' className='text-[10px] md:text-sm border px-2 max-h-min py-1 border-orange-400 flex rounded-md md:px-8 md:py-2 md:rounded-lg bg-orange-500'>Register </Link>
                     </motion.div>
@@ -52,6 +59,7 @@ const Navbar = () => {
                         nitial={{ opacity: 1, scale: 1 }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={handleClick}
                     >
                         <img src="./images/icons/cart-1.png" alt="" className="w-5 h-5" />
                     </motion.div>
@@ -59,6 +67,7 @@ const Navbar = () => {
                         nitial={{ opacity: 1, scale: 1 }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={handleClick}
                     >
                         <img src="./images/icons/heart-1.png" alt="" className="w-5 h-5" />
                     </motion.div>
