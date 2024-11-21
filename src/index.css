@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 .black-glass {
-  background-color: rgba(0, 0, 0, 0.3); 
-  backdrop-filter: blur(10px); 
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 20px; 
+  padding: 20px;
   color: white;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column; /* Agar konten dalam slide tersusun vertikal */
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Gunakan jika slide memiliki tinggi tertentu */
 }

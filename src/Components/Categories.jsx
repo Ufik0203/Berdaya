@@ -27,7 +27,7 @@ const Categories = () => {
                 onClick={isOpen}
                 tabIndex={0}
             >
-                <p className="text-xs sm:text-sm font-semibold">Categories</p>
+                <p className="text-xs sm:text-sm font-semibold">Kategori</p>
             </motion.div>
             <AnimatePresence>
                 {isDropdown && (
