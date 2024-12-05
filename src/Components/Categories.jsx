@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion"
 import { Link } from "react-router-dom";
 
-const Categories = () => {
+const Categories = (props) => {
+    const { name, clsname, children } = props;
     const [isDropdown, setIsDropdown] = useState(false);
     const dropdownRef = useRef(null);
     const isOpen = () => setIsDropdown(!isDropdown);
@@ -18,16 +19,17 @@ const Categories = () => {
         };
     }, []);
     return (
-        <div className="dropdown bg-orange-500 rounded-md border-2 border-orange-500 md:hidden" ref={dropdownRef}>
+        <div className={`dropdown rounded-md border-2 border-orange-500 ${clsname}`} ref={dropdownRef}>
             <motion.div
                 initial={{ opacity: 1, scale: 1 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                className="hover:cursor-pointer rounded-sm justify-center items-center flex min-h-6 px-3 md:hidden select-none"
+                className="hover:cursor-pointer rounded-sm justify-center items-center flex min-h-6 px-3 select-none"
                 onClick={isOpen}
                 tabIndex={0}
             >
-                <p className="text-xs sm:text-sm font-semibold">Kategori</p>
+                <p className="text-xs sm:text-sm font-semibold lg:text-center">{name}</p>
+                <img src="./images/icons/dropdown.png" alt="" className="w-5 h-5" />
             </motion.div>
             <AnimatePresence>
                 {isDropdown && (
@@ -38,9 +40,7 @@ const Categories = () => {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2, ease: "easeIn" }}
                     >
-                        <Link className="dropdown-item text-sm hover:bg-gray-300" tabIndex={-1}>1</Link>
-                        <Link className="dropdown-item text-sm hover:bg-gray-300" tabIndex={-1}>2</Link>
-                        <Link className="dropdown-item text-sm hover:bg-gray-300" tabIndex={-1}>3</Link>
+                        {children}
                     </motion.div>
                 )}
             </AnimatePresence>

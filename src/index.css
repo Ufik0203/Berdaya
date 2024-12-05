@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .black-glass {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 20px;
@@ -12,8 +12,23 @@
 
 .swiper-slide {
   display: flex;
-  flex-direction: column; /* Agar konten dalam slide tersusun vertikal */
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
-  height: 100%; /* Gunakan jika slide memiliki tinggi tertentu */
+  height: 100%;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 5px;
+  animation: blink 1s step-end infinite;
+  background: black;
+  color: transparent;
+}
+
+@keyframes blink {
+  50% {
+      background: transparent;
+      color: black;
+  }
 }

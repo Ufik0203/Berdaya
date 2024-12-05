@@ -1,183 +1,131 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import 'animate.css';
-import CardCel from "./CardCel";
-import ContentCel from "./ContentCel";
-import { Link } from "react-router-dom";
 import { getAboutCel } from "../services/about.services";
-
-// const bg_1 = import.meta.env.VITE_BG_1;
+import "animate.css";
+import TypingText from "./TypingText";
+import { Link } from "react-router-dom";
 
 const CarouselAbout = () => {
     const [aboutCel, setAboutCel] = useState([]);
-    const cardRefs = useRef([]);
-    const BgroundRef = useRef([]);
-    const loTopRef = useRef([]);
-    const [isAnimated, setIsAnimated] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
-    
+    const [animated, setAnimated] = useState(false);
+    const [isSmScreen, setIsSmScreen] = useState(false);
+    const intervalRef = useRef(null);
+
     useEffect(() => {
         getAboutCel((data) => {
             setAboutCel(data);
-            // console.log(data);
-        });
+        })
+    }, []);
+
+    useEffect(() => {
+        if (aboutCel.length > 0) {
+            startScroll();
+        }
+        return () => stopScroll();
+    }, [aboutCel]);
+
+    useEffect(() => {
+        const handleSize = () => {
+            setIsSmScreen(window.innerWidth < 1080);
+        }
+        handleSize();
+        window.addEventListener("resize", handleSize);
+        return () => window.removeEventListener("resize", handleSize);
     }, [])
 
-    const scrollToCard = (index) => {
+    const handleCardClick = (index) => {
         setActiveIndex(index);
-        setIsAnimated(false);
-
+        setAnimated(true);
+        stopScroll();
         setTimeout(() => {
-            setIsAnimated(true);
-        }, 10)
-
-        if (cardRefs.current[index]) {
-            cardRefs.current[index].scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-                inline: "center",
-            });
-        }
-
-        if (BgroundRef.current[index]) {
-            BgroundRef.current[index].scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-                inline: "center",
-            })
-        }
-
-        if (loTopRef.current[index]) {
-            loTopRef.current[index].scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-                inline: "center",
-            })
-        }
-
-        if (index === cards.length - 2) {
-            setCards((prevCards) => [
-                ...prevCards,
-                ...prevCards.map((card, idx) => ({
-                    ...card,
-                    id: `${card.id}-${prevCards.length + idx + 1}`
-                }))
-            ]);
-        }
-
-        if (index === bGround.length - 2) {
-            setBground((prevBground) => [
-                ...prevBground,
-                ...prevBground.map((bg, idx) => ({
-                    ...bg,
-                    id: `${bg.id}-${prevBground.length + idx + 1}`
-                }))
-            ]);
-        }
-
-        if (index === loTop.length - 2) {
-            setLoTop((prevLoTop) => [
-                ...prevLoTop,
-                ...prevLoTop.map((lo, idx) => ({
-                    ...lo,
-                    id: `${lo.id}-${prevLoTop.length + idx + 1}`
-                }))
-            ]);
-        }
+            startScroll();
+        }, 10000);
     };
 
+    const startScroll = () => {
+        stopScroll();
+        intervalRef.current = setInterval(() => {
+            setActiveIndex((prevIndex) => (prevIndex + 1) % aboutCel.length);
+            setAnimated(true);
+        }, 5000);
+    }
+
+    const stopScroll = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    }
+
+    const handleClickSize = () => {
+        setIsSmScreen(!isSmScreen);
+    }
+
     return (
-        <motion.section className="h-screen relative select-none"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
-        >
-
-            {/* HEAD SECTION */}
-            {aboutCel.length && aboutCel.map((item, index) => {
-                return (
-                    <>
-                        <motion.div className="overflow-hidden h-[100%]"
-                            initial={{ x: 300 }}
-                            animate={{ x: 0 }}
-                            exit={{ x: 300 }}
-                            transition={{ duration: 1.5 }}
+        <div className="min-h-screen">
+            <div className="2xl:absolute w-full h-full overflow-hidden">
+                <div className="min-h-[5rem] w-full bg-transparent flex ml-5">
+                    <Link to={'/'} className="flex flex-col justify-center">
+                        <img src="./images/Berdaya-logo.png" alt="" className="h-10 w-10 mt-2 md:w-16 md:h-16 mr-2 lg:h-20 lg:w-20 lg:mt-0 ml-2" />
+                        <span className="font-bold text-center text-xs lg:text-base text-blue-950">Home</span>
+                    </Link>
+                    <TypingText text="BERDAYA" text2="hadir untuk solusi" color1="text-blue-950" color2="text-orange-500" typingSpeed={100} className="text-xl md:text-4xl 2xl:text-5xl">
+                        <span className="blinking-cursor">|</span>
+                    </TypingText>
+                </div>
+                <motion.div className="rounded-2xl select-none flex mx-5 2xl:mx-0 justify-center 2xl:w-full h-full overflow-hidden"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={animated ? { opacity: [0, 1], scale: [0.5, 0.9] } : { opacity: 1, scale: 1 }}
+                    onAnimationComplete={() => setAnimated(false)}
+                >
+                    <img
+                        src={aboutCel[activeIndex]?.about_image_url}
+                        alt={`Background`}
+                        className="bg-cover bg-center bg-no-repeat w-full rounded-2xl shadow-2xl border border-slate-200 md:min-h-[35rem] 2xl:h-[50rem] 2xl:w-[70rem] h-60"
+                    />
+                </motion.div>
+                <div className="grid lg:grid-cols-2 2xl:grid-cols-none">
+                    <motion.div className="2xl:absolute text-white 2xl:h-[25rem] my-5 mx-5 h-[23rem] 2xl:w-[45rem] border border-orange-500 2xl:bottom-10 2xl:left-10 rounded-xl shadow-xl black-glass"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={animated ? { opacity: [0, 1], scale: [0.5, 0.9] } : { opacity: 1, scale: 1 }}
+                    >
+                        <div>
+                            <img src="" alt="" />
+                        </div>
+                        <div className="grid px-5 py-5 hover:cursor-pointer"
+                            onClick={handleClickSize}
                         >
-                            <motion.div
-                                key={`${item.id}-${activeIndex}`}
-                                ref={(el) => (BgroundRef.current[index] = el)}
-                                initial={{ opacity: 1, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 1 }}
-                            >
-                                <div className="w-full h-[100%] fixed bg-black rounded-sm bg-opacity-40"></div>
-                                <img
-                                    src={`${item.image_url}`}
-                                    alt=""
-                                    className="bg-cover bg-center bg-no-repeat h-screen w-full"
-                                />
-                            </motion.div>
-                        </motion.div >
-
-                        <Link to='/' className={`absolute top-8 left-8 text-white text-3xl font-crimson font-bold ${isAnimated ? 'animate__animated animate__fadeInLeft' : ''}`}>Home</Link>
-                        <div className={`absolute top-32 left-24 text-white text-8xl font-crimson font-bold ${isAnimated ? 'animate__animated animate__fadeInLeft' : ''}`}>
-                            <h1>Berdaya Mengatasi Solusi</h1>
+                            <p className="font-bold md:text-3xl my-5 text-center 2xl:text-start text-base">{aboutCel[activeIndex]?.about_judul}</p>
+                            <p className="md:text-xl flex flex-col text-sm">
+                                {isSmScreen ? `${aboutCel[activeIndex]?.about_description}` : aboutCel[activeIndex]?.about_description}
+                                {/* <br />
+                            <span className=" text-center w-full lg:hidden 2xl:hidden mt-5 text-blue-950 font-semibold text-xs">Click untuk info lebih lanjut</span> */}
+                            </p>
                         </div>
+                    </motion.div>
+                    <motion.div className="2xl:mr-5 2xl:absolute 2xl:w-[38rem] h-[23rem] lg:mt-5 black-glass right-5 top-64 rounded-xl border mx-5 border-orange-500"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={animated ? { opacity: [0, 1], scale: [0.5, 0.9] } : { opacity: 1, scale: 1 }}
+                        onAnimationComplete={() => setAnimated(false)}
+                    >
+                /// grafik
+                    </motion.div>
+                </div>
+            </div>
+            <div className="2xl:absolute 2xl:right-[45rem] 2xl:bottom-10 flex justify-center mt-10 2xl:mt-0 2xl:justify-normal">
+                {aboutCel.map((item, index) => (
+                    <label key={item.about_id} className={`flex items-center justify-center w-16 h-3 mx-2 rounded-md cursor-pointer border transition-all duration-300 ${activeIndex === index
+                        ? "bg-orange-500 border-orange-500"
+                        : "bg-slate-600"}`}
+                    >
+                        <input type="radio" name="aboutRadio" value={index} checked={activeIndex === index} onChange={() => handleCardClick(index)} className="hidden" />
+                    </label>
+                ))}
+            </div>
 
-                        {/* CONTENT SECTION */}
-                        <div className="absolute left-20 bottom-32 select-text rounded-xl h-[40rem] w-[40rem] flex overflow-hidden">
-                            <motion.div
-                                key={`${item.id}-${index}`}
-                                ref={(el) => (loTopRef.current[index] = el)}
-                                initial={{ scale: 1, opacity: 0 }}
-                                animate={
-                                    index === activeIndex
-                                        ? { scale: 1, opacity: 1 }
-                                        : { scale: 0, opacity: 0 }
-                                }
-                                transition={{ duration: 1 }}
-                                className="flex-shrink-0 min-w-[100%] cursor-pointer"
-                            >
-                                <ContentCel>
-                                    {/* <ContentCel.ContentCelHead images={lo.image}></ContentCel.ContentCelHead> */}
-                                    <ContentCel.ContentCelBody title={item.judul} description={item.description}></ContentCel.ContentCelBody>
-                                </ContentCel>
-                            </motion.div>
-                        </div>
-
-
-                        {/* CARD SECTION */}
-                        <div className="absolute bottom-20 right-6 w-[30%] overflow-x-hidden overflow-y-hidden flex gap-5 hide-scrollbar">
-                            <motion.div
-                                key={`${item.id}-${index}`}
-                                ref={(el) => (cardRefs.current[index] = el)}
-                                className="flex-shrink-0 w-[35%] min-w-[200px] h-72 cursor-pointer"
-                                onClick={() => scrollToCard(index)}
-                                initial={{ scale: 1, opacity: 0.7 }}
-                                animate={
-                                    index === activeIndex
-                                        ? { scale: 1, opacity: 1 }
-                                        : { scale: 0.8, opacity: 0.7 }
-                                }
-                                transition={{ duration: 0.5 }}
-                            >
-                                <CardCel>
-                                    <CardCel.HeaderCard
-                                        image={item.image_url}
-                                        title={item.judul}
-                                        topic={'card.topic'}
-                                    />
-                                </CardCel>
-                            </motion.div>
-                        </div>
-                    </>
-                )
-            })}
-        </motion.section>
+        </div>
     );
-
 };
 
 export default CarouselAbout;
