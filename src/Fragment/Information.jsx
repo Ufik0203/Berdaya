@@ -17,8 +17,7 @@ const Information = () => {
     const [isShow, setIsShow] = useState(false);
 
     const showInformation = () => {
-        const productHtml = `
-            <div class="flex flex-col items-center p-4 overflow-hidden">
+        const productHtml = `<div class="flex flex-col items-center p-4 overflow-hidden">
                 <div id="close-btn" class="bg-white absolute right-2 top-2 rounded-full animate__animated animate__bounce select-none">
                     <img src="./images/icons/close.png" alt="Close" class="w-6 h-6 animate__animated" />
                 </div>
@@ -37,8 +36,7 @@ const Information = () => {
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
-            </div>
-        `;
+            </div>`;
 
         Swal.fire({
             showConfirmButton: false,
@@ -46,7 +44,6 @@ const Information = () => {
             html: productHtml,
         });
 
-        // Menginisialisasi Swiper setelah modal selesai dirender
         setTimeout(() => {
             const swiperInstance = new Swiper(".swiper-container", {
                 modules: [Navigation, Pagination],
@@ -62,11 +59,10 @@ const Information = () => {
                 spaceBetween: 60,
                 on: {
                     slideChange: function () {
-                        // Menambahkan animasi ke setiap slide saat slide berubah
                         const currentSlide = this.slides[this.activeIndex];
-                        const animationClass = 'animate__fadeInUp'; // Ganti dengan animasi yang diinginkan
+                        const animationClass = 'animate__fadeInUp';
                         currentSlide.classList.remove('animate__animated');
-                        void currentSlide.offsetWidth; // Memaksa browser untuk merender ulang
+                        void currentSlide.offsetWidth;
                         currentSlide.classList.add('animate__animated', animationClass);
                     },
                 },
@@ -75,8 +71,8 @@ const Information = () => {
             const closeBtn = document.getElementById("close-btn");
             if (closeBtn) {
                 closeBtn.addEventListener("click", () => {
-                    Swal.close(); // Menutup SweetAlert
-                    setIsShow(false); // Reset state (jika diperlukan)
+                    Swal.close();
+                    setIsShow(false);
                 });
             }
         }, 100);

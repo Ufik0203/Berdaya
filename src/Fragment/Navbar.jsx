@@ -22,14 +22,14 @@ const Navbar = () => {
                     </NavbarMenu>
                     <NavbarMenu>SUPER</NavbarMenu>
                     <NavbarMenu>DISKON</NavbarMenu>
-                    <div className="rounded-md md:hover:bg-red-400 flex justify-center items-center relative">
-                        <Categories name="PAGES" clsname='border-transparent'>
+                    <div className="rounded-md flex justify-center items-center relative">
+                        <Categories name="PAGES" clsname='border-transparent w-full hover:text-red-400'>
                             <Link to={'/about'} className="dropdown-item text-xs font-extrabold hover:bg-gray-300 text-blue-950" tabIndex={-1}>About</Link>
                             <Link className="dropdown-item text-xs font-bold hover:bg-gray-300" tabIndex={-1}>Cooming soon</Link>
                         </Categories>
                     </div>
                 </div>
-                <div className=" flex justify-center items-center h-9 md:border-none border rounded-md px-1 py-1 bg-white md:bg-transparent">
+                <div className=" flex justify-center items-center h-9 md:border-none border rounded-md px-1 lg:px-0 py-1 bg-white md:bg-transparent">
                     <Categories name="Kategori" clsname='bg-orange-500 md:hidden'>
                         <Link className="dropdown-item text-xs font-bold hover:bg-gray-300" tabIndex={-1}>Cooming soon</Link>
                     </Categories>

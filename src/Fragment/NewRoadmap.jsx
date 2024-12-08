@@ -91,19 +91,19 @@ const NewRoadmap = () => {
 
     {/* Logic Animation */ }
     useEffect(() => {
-        if (mainProgress === 26) {
+        if (mainProgress === 20) {
             setIsBranchActive1(true);
         }
 
-        if (mainProgress === 51) {
+        if (mainProgress === 43) {
             setIsBranchActive2(true);
         }
 
-        if (mainProgress === 76) {
+        if (mainProgress === 68) {
             setIsBranchActive3(true);
         }
 
-        if (mainProgress === 98) {
+        if (mainProgress === 90) {
             setIsBranchActive4(true);
         }
 
@@ -337,7 +337,7 @@ const NewRoadmap = () => {
                 <div className="w-[85%] h-8 rounded-full bg-gray-300 overflow-hidden relative">
                     <div className=" bg-red-400 w-full h-full relative" style={{
                         width: `${mainProgress}%`,
-                        transition: `width 500ms ease-in-out`,
+                        transition: `width 500ms `,
                     }} >
                         <p className="w-full text-end text-white font-bold px-5">{mainProgress}%</p>
                     </div>

@@ -80,7 +80,7 @@ const CarouselAbout = () => {
                     onAnimationComplete={() => setAnimated(false)}
                 >
                     <img
-                        src={aboutCel[activeIndex]?.about_image_url}
+                        src={aboutCel[activeIndex]?.image_url}
                         alt={`Background`}
                         className="bg-cover bg-center bg-no-repeat w-full rounded-2xl shadow-2xl border border-slate-200 md:min-h-[35rem] 2xl:h-[50rem] 2xl:w-[70rem] h-60"
                     />
@@ -96,9 +96,9 @@ const CarouselAbout = () => {
                         <div className="grid px-5 py-5 hover:cursor-pointer"
                             onClick={handleClickSize}
                         >
-                            <p className="font-bold md:text-3xl my-5 text-center 2xl:text-start text-base">{aboutCel[activeIndex]?.about_judul}</p>
+                            <p className="font-bold md:text-3xl my-5 text-center 2xl:text-start text-base">{aboutCel[activeIndex]?.judul}</p>
                             <p className="md:text-xl flex flex-col text-sm">
-                                {isSmScreen ? `${aboutCel[activeIndex]?.about_description}` : aboutCel[activeIndex]?.about_description}
+                                {isSmScreen ? `${aboutCel[activeIndex]?.description}` : aboutCel[activeIndex]?.description}
                                 {/* <br />
                             <span className=" text-center w-full lg:hidden 2xl:hidden mt-5 text-blue-950 font-semibold text-xs">Click untuk info lebih lanjut</span> */}
                             </p>
@@ -109,13 +109,13 @@ const CarouselAbout = () => {
                         animate={animated ? { opacity: [0, 1], scale: [0.5, 0.9] } : { opacity: 1, scale: 1 }}
                         onAnimationComplete={() => setAnimated(false)}
                     >
-                /// grafik
+                    <img src={`${aboutCel[activeIndex]?.image_diagram}`} alt="" className="w-full h-full rounded-md"/>
                     </motion.div>
                 </div>
             </div>
             <div className="2xl:absolute 2xl:right-[45rem] 2xl:bottom-10 flex justify-center mt-10 2xl:mt-0 2xl:justify-normal">
                 {aboutCel.map((item, index) => (
-                    <label key={item.about_id} className={`flex items-center justify-center w-16 h-3 mx-2 rounded-md cursor-pointer border transition-all duration-300 ${activeIndex === index
+                    <label key={item.id} className={`flex items-center justify-center w-16 h-3 mx-2 rounded-md cursor-pointer border transition-all duration-300 ${activeIndex === index
                         ? "bg-orange-500 border-orange-500"
                         : "bg-slate-600"}`}
                     >
@@ -123,7 +123,6 @@ const CarouselAbout = () => {
                     </label>
                 ))}
             </div>
-
         </div>
     );
 };
