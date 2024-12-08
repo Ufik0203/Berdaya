@@ -24,7 +24,7 @@ const Navbar = () => {
                     <NavbarMenu>DISKON</NavbarMenu>
                     <div className="rounded-md flex justify-center items-center relative">
                         <Categories name="PAGES" clsname='border-transparent w-full hover:text-red-400'>
-                            <Link to={'/about'} className="dropdown-item text-xs font-extrabold hover:bg-gray-300 text-blue-950" tabIndex={-1}>About</Link>
+                            <Link to={'/'} className="dropdown-item text-xs font-extrabold hover:bg-gray-300 text-blue-950" tabIndex={-1}>About</Link>
                             <Link className="dropdown-item text-xs font-bold hover:bg-gray-300" tabIndex={-1}>Cooming soon</Link>
                         </Categories>
                     </div>

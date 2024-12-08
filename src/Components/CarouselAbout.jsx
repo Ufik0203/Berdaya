@@ -66,7 +66,7 @@ const CarouselAbout = () => {
         <div className="min-h-screen">
             <div className="2xl:absolute w-full h-full overflow-hidden">
                 <div className="min-h-[5rem] w-full bg-transparent flex ml-5">
-                    <Link to={'/'} className="flex flex-col justify-center">
+                    <Link to={'/shop'} className="flex flex-col justify-center">
                         <img src="./images/Berdaya-logo.png" alt="" className="h-10 w-10 mt-2 md:w-16 md:h-16 mr-2 lg:h-20 lg:w-20 lg:mt-0 ml-2" />
                         <span className="font-bold text-center text-xs lg:text-base text-blue-950">Home</span>
                     </Link>

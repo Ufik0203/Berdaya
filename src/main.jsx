@@ -8,11 +8,11 @@ import AboutPage from './Pages/AboutPage'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LandingPage></LandingPage>,
+    element: <AboutPage></AboutPage>,
   },
   {
-    path: '/about',
-    element: <AboutPage></AboutPage>,
+    path: '/shop',
+    element: <LandingPage></LandingPage>,
   }
 ])
 
